@@ -1,0 +1,104 @@
+<app-info-card [contentDivider]="true" [removeBorderBreakpoint]="breakpoint.Mobile">
+  <ng-container ngProjectAs="[card-title]">
+    <a
+      app-button-back
+      [routerLink]="['../']"
+    ></a>
+
+    <span class="transaction-details__title">
+      Transaction details
+    </span>
+  </ng-container>
+
+  <ng-container
+    ngProjectAs="[card-body]"
+    *ngIf="transactionDetails$ | async as transactionDetails; else tablesLoading;"
+  >
+    <div
+      class="transaction-details__hash"
+      [appTypeface]="(isTablet$ | async) ? 'subheader' : 'header-4'"
+    >
+      {{ transactionDetails.hash }}
+    </div>
+
+    <div
+      *ngIf="transactionDetails.code"
+      class="transaction-details__error"
+      appTypeface="paragraph"
+    >
+      <svg-icon
+        class="transaction-details__error-icon"
+        key="warning"
+        size="lg"
+      ></svg-icon>
+
+      <div class="transaction-details__error-message">
+        <div class="transaction-details__error-message-title">
+          Transactions is failed
+        </div>
+
+        {{ transactionDetails.rawLog }}
+      </div>
+    </div>
+
+    <app-page-link class="transaction-details__page-link"></app-page-link>
+
+    <div class="transaction-details__divider"></div>
+
+    <app-details-table class="transaction-details__details-table">
+      <ng-template [appDetailsTableCellDef]="'Height'">
+        <a
+          class="transaction-details__block-link"
+          [routerLink]="['/', blocksRoute, transactionDetails.height]"
+        >
+          {{ +transactionDetails.height | numberFormat : null : true }}
+        </a>
+      </ng-template>
+
+      <ng-template [appDetailsTableCellDef]="'Fee'">
+        {{ transactionDetails.tx.authInfo.fee.amount.length ? (+transactionDetails.tx.authInfo.fee.amount[0]?.amount / 1000000 | numberFormat : null : true | appCurrencySymbol) : '-' }}
+      </ng-template>
+
+      <ng-template [appDetailsTableCellDef]="'Gas used/wanted'">
+        {{ transactionDetails.gasUsed ? (+transactionDetails.gasUsed | numberFormat : null : true) : 0 }} /
+
+        <span class="transaction-details__gas-wanted">
+          {{ transactionDetails.gasWanted ? (+transactionDetails.gasWanted | numberFormat : null : true) : 0 }}
+        </span>
+      </ng-template>
+
+      <ng-template [appDetailsTableCellDef]="'Date & Time'">
+        {{ blockTime$ | async | date:'yyyy.MM.dd, HH:mm:ss' }}
+      </ng-template>
+
+      <ng-template *ngIf="transactionDetails.tx.body.memo" [appDetailsTableCellDef]="'Memo'">
+        {{ transactionDetails.tx.body.memo }}
+      </ng-template>
+    </app-details-table>
+
+    <div class="transaction-details__divider mod-wide"></div>
+
+    <ng-container *ngFor="let message of transactionDetails.tx.body.messages; let last = last">
+      <app-transaction-message
+        class="transaction-details__message"
+        [txMessage]="message"
+      ></app-transaction-message>
+
+      <div
+        class="transaction-details__divider"
+        *ngIf="!last"
+      ></div>
+    </ng-container>
+  </ng-container>
+</app-info-card>
+
+<ng-template #tablesLoading>
+  <ngx-skeleton-loader
+    class="transaction-details__loading"
+    count="6"
+    [theme]="{
+      height: '40px',
+      width: '100%'
+    }"
+  ></ngx-skeleton-loader>
+</ng-template>

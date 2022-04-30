@@ -1,0 +1,18 @@
+<div class="transaction-message__type">
+  <app-transaction-message-type-icon
+    class="transaction-message__type-icon"
+    [messageType]="txMessage.typeUrl"
+  ></app-transaction-message-type-icon>
+
+  <span
+    class="transaction-message__type-label"
+    appTypeface="subheader"
+  >
+    {{ txMessage.typeUrl | txMessageTypeLabel }}
+  </span>
+</div>
+
+<app-transaction-message-details
+  class="transaction-message__details"
+  [message]="txMessage"
+></app-transaction-message-details>

@@ -1,0 +1,4 @@
+export const svgCreateValidatorIcon = {
+    data: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 18V15H19V18H16V20H19V23H21V20H24V18H21Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M4 3H20C21.1 3 22 3.9 22 5V13H20V5H4V19H14V21H4C2.9 21 2 20.1 2 19V5C2 3.9 2.9 3 4 3Z" fill="currentColor"/><path fill-rule="evenodd" clip-rule="evenodd" d="M19.41 8.42L17.99 7L14.82 10.17L13.41 8.75L12 10.16L14.82 13L19.41 8.42Z" fill="currentColor"/><path d="M10 7H5V9H10V7Z" fill="currentColor"/><path d="M10 11H5V13H10V11Z" fill="currentColor"/><path d="M10 15H5V17H10V15Z" fill="currentColor"/></svg>`,
+    name: 'create-validator'
+};

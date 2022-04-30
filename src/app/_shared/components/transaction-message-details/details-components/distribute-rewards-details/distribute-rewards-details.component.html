@@ -1,0 +1,16 @@
+<div
+  class="distribute-rewards-details__amount"
+  appTypeface="header-3"
+>
+  {{ +amount | numberFormat : null : true }} uPDV
+</div>
+
+<app-transfer-details>
+  <ng-template [appTransferDetailsFrom]="'Owner'">
+    {{ details.owner }}
+  </ng-template>
+
+  <ng-template [appTransferDetailsTo]="'Receiver'">
+    {{ details.rewards[0].receiver }}
+  </ng-template>
+</app-transfer-details>

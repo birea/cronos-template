@@ -1,0 +1,110 @@
+@import 'variables';
+
+:host {
+  display: block;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard__chart-stats {
+  border: 2px solid $color-outlines;
+  border-radius: $border-radius;
+  padding: $grid-step * 2;
+}
+
+.dashboard__statistics {
+  display: grid;
+  gap: $grid-step * 3;
+  grid-template-columns: repeat(3, minmax(0, 4fr));
+  min-height: 360px;
+}
+
+.dashboard__statistics-cards-row {
+  display: grid;
+  gap: $grid-step * 3;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 360px;
+}
+
+.dashboard__statistics-cards {
+  display: grid;
+  gap: $grid-step * 3;
+  position: relative;
+}
+
+.dashboard__statistics-cards-first {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard__statistics-cards-second {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboard__tables {
+  display: grid;
+  gap: $grid-step * 3;
+  //grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  margin-top: $grid-step * 3;
+}
+
+.dashboard__cards {
+  display: grid;
+  gap: $grid-step * 3;
+  margin-top: $grid-step * 3;
+}
+
+.dashboard__statistics-tables--loading {
+  width: 100%;
+}
+
+.dashboard__tables-show-more {
+  align-items: center;
+  color: $color-primary;
+  display: inline-flex;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $color-blue-hover;
+  }
+}
+
+.dashboard__tables-show-more-icon {
+  height: 24px;
+  width: 24px;
+}
+
+.dashboard__blocks-table,
+.dashboard__transactions-table {
+  margin: 0 (-$grid-step * 2);
+}
+
+@media (max-width: $screen-desktop-large) {
+  .dashboard__statistics {
+    grid-template-columns: minmax(0, 2fr);
+  }
+
+  .dashboard__statistics-cards-first {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .dashboard__tables {
+    grid-template-rows: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: $screen-desktop) {
+}
+
+@media (max-width: $screen-mobile) {
+  .dashboard__statistics-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard__tables {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

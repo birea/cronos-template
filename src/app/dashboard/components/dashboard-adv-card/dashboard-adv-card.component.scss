@@ -1,0 +1,16 @@
+@import 'variables';
+
+.dashboard-adv-card__info-card {
+  height: 100%;
+}
+
+.dashboard-adv-card__value {
+  font-weight: 500;
+  margin-top: $grid-step;
+  word-break: break-all;
+}
+
+.dashboard-adv-card__loading {
+  display: flex;
+  flex-direction: column;
+}

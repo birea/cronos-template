@@ -1,0 +1,80 @@
+@use 'sass:math';
+@import 'variables';
+
+:host {
+  display: block;
+}
+
+.transaction-details__title {
+  margin: 0 $grid-step * 2;
+}
+
+.transaction-details__loading {
+  width: 100%;
+}
+
+.transaction-details__hash {
+  word-break: break-word;
+}
+
+.transaction-details__error {
+  background-color: rgba($color-red, .08);
+  border-radius: $border-radius;
+  color: $color-red;
+  display: flex;
+  margin-top: $grid-step;
+  max-width: max-content;
+  padding: $grid-step $grid-step * 1.5;
+}
+
+.transaction-details__error-message-title {
+  font-weight: 700;
+  margin-bottom: math.div($grid-step, 2);
+}
+
+.transaction-details__error-icon {
+  flex-shrink: 0;
+  margin-right: $grid-step;
+}
+
+.transaction-details__page-link {
+  display: block;
+  margin-bottom: $grid-step * 3;
+  margin-top: $grid-step * 1.5;
+}
+
+.transaction-details__details-table {
+  margin: $grid-step * 2 0;
+}
+
+.transaction-details__block-link {
+  color: $color-primary;
+  font-size: inherit;
+
+  &:hover {
+    color: $color-primary-hover;
+  }
+}
+
+.transaction-details__gas-wanted {
+  color: $color-grey;
+  font-weight: 400;
+}
+
+.transaction-details__message {
+  margin-top: $grid-step * 2;
+
+  &:nth-child(n-1) {
+    margin-bottom: $grid-step * 2;
+  }
+}
+
+.transaction-details__divider {
+  background-color: $color-outlines;
+  height: 2px;
+
+  &.mod-wide {
+    height: 8px;
+    margin: 0 (-$grid-step * 2);
+  }
+}

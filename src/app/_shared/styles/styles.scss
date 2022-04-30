@@ -1,0 +1,50 @@
+@import 'mixins';
+@import 'variables';
+
+* {
+  //outline: 1px solid red;
+}
+
+:root {
+  --breakpoint-desktop-xlarge: #{$screen-desktop-xlarge};
+  --breakpoint-desktop-large: #{$screen-desktop-large};
+  --breakpoint-desktop: #{$screen-desktop};
+  --breakpoint-tablet: #{$screen-tablet};
+  --breakpoint-mobile: #{$screen-mobile};
+}
+
+html {
+  font-family: $main-font-family;
+  font-size: $main-font-size;
+}
+
+body {
+  color: $color-font-base;
+  font-family: $main-font-family;
+  margin: 0;
+  padding: 0;
+}
+
+input {
+  font-family: inherit;
+}
+
+svg-icon {
+  align-items: center;
+  display: inline-flex !important;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $screen-desktop-xlarge + $page-side-padding * 2;
+  padding: 0 $page-side-padding;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  //box-sizing: border-box;
+}
+
+#cdk-describedby-message-container {
+  display: none;
+}

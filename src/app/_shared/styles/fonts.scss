@@ -1,0 +1,7 @@
+@import 'mixins';
+
+$font-path: '/assets/fonts';
+
+@include font-face('Inter', '#{$font-path}/Inter-Regular', 400, 'normal');
+@include font-face('Inter', '#{$font-path}/Inter-Medium', 500, 'normal');
+@include font-face('Inter', '#{$font-path}/Inter-Bold', 700, 'bold');

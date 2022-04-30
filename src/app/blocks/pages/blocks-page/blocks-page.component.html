@@ -1,0 +1,23 @@
+<app-info-card [removeBorderBreakpoint]="breakpoint.Mobile">
+  <ng-container ngProjectAs="[card-title]">
+    Blocks
+  </ng-container>
+
+  <app-blocks-table
+    class="blocks__table"
+    ngProjectAs="[card-body]"
+    *ngIf="blocks$ | async as blocks; else tablesLoading;"
+    [data]="blocks"
+  ></app-blocks-table>
+</app-info-card>
+
+<ng-template #tablesLoading>
+  <ngx-skeleton-loader
+    class="blocks__table--loading"
+    count="9"
+    [theme]="{
+      height: '40px',
+      width: '100%'
+    }"
+  ></ngx-skeleton-loader>
+</ng-template>

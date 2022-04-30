@@ -1,0 +1,31 @@
+<app-data-table [data]="data" [trackBy]="trackByHash">
+  <a
+    *dataTableColumnDef="let item; name: 'Height'"
+    [routerLink]="['/', blocksRoute, item.header.height]"
+  >
+    {{ item.header.height | numberFormat : null : true }}
+  </a>
+
+  <span
+    [attr.title]="item.id"
+    *dataTableColumnDef="let item; name: 'Hash'"
+  >
+    <ng-container *appBreakpoint="breakpoint.Desktop; revert true; else tabletHash">
+      {{ item.id | truncate : hashSize[breakpoint.Desktop] }}
+    </ng-container>
+
+    <ng-template #tabletHash>
+      <ng-container *appBreakpoint="breakpoint.Tablet; revert true; else mobileHash">
+        {{ item.id | truncate : hashSize[breakpoint.Tablet] }}
+      </ng-container>
+    </ng-template>
+
+    <ng-template #mobileHash>
+      {{ item.id | truncate : hashSize[breakpoint.Mobile] }}
+    </ng-template>
+  </span>
+
+  <ng-container *dataTableColumnDef="let item; name: 'Time'">
+    {{ item.header.time | dateAgo }}
+  </ng-container>
+</app-data-table>

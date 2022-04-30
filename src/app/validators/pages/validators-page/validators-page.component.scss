@@ -1,0 +1,13 @@
+@import 'variables';
+
+:host {
+  display: block;
+}
+
+.validators-page__table {
+  margin: 0 (-$grid-step * 2);
+}
+
+.validators-page__loading {
+  width: 100%;
+}

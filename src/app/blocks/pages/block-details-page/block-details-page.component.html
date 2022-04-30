@@ -1,0 +1,88 @@
+<app-info-card [contentDivider]="true" [removeBorderBreakpoint]="breakpoint.Mobile">
+  <ng-container ngProjectAs="[card-title]">
+    <a
+      class="block-details__back-link"
+      app-button-back
+      [routerLink]="['../']"
+    ></a>
+
+    <span class="block-details__title">Block details</span>
+
+    <div class="block-details__pagination">
+      <a
+        class="block-details__pagination-item mod-previous"
+        [class.is-disabled]="!previousBlockHeight"
+        [routerLink]="['../', previousBlockHeight]"
+      >
+        <svg-icon key="expand-left" size="lg"></svg-icon>
+      </a>
+
+      <a
+        class="block-details__pagination-item mod-next"
+        [class.is-disabled]="!nextBlockHeight"
+        [routerLink]="['../', nextBlockHeight]"
+      >
+        <svg-icon key="expand-right" size="lg"></svg-icon>
+      </a>
+    </div>
+  </ng-container>
+
+  <ng-container
+    ngProjectAs="[card-body]"
+    *ngIf="blockDetails$ | async as blockDetails; else tablesLoading;"
+  >
+    <div
+      class="block-details__hash"
+      [appTypeface]="(isTablet$ | async) ? 'subheader' : 'header-4'"
+    >
+      {{ blockDetails.id }}
+
+      <app-page-link class="block-details__page-link"></app-page-link>
+    </div>
+
+    <div class="block-details__divider"></div>
+
+    <app-details-table class="block-details__details-table">
+      <ng-template [appDetailsTableCellDef]="'Height'">
+        {{ +blockDetails.header.height | numberFormat : null : true }}
+      </ng-template>
+
+      <ng-template [appDetailsTableCellDef]="'Date & Time'">
+        {{ blockDetails.header.time | date:'yyyy.MM.dd, HH:mm:ss' }}
+      </ng-template>
+    </app-details-table>
+
+    <ng-container *ngIf="blockTxs$ | async as blockTxs">
+      <ng-template [ngIf]="blockTxs.length > 0">
+        <div class="block-details__divider mod-wide"></div>
+
+        <div class="block-details__transactions-table__title">
+          <span appTypeface="subheader">Transactions</span>
+
+          <span
+            class="block-details__transactions-count"
+            appTypeface="paragraph"
+          >
+            <span class="block-details__transactions-count__value">{{ blockTxs.length }}</span>
+          </span>
+        </div>
+
+        <app-transactions-table
+          class="block-details__transactions-table"
+          [data]="blockTxs"
+        ></app-transactions-table>
+      </ng-template>
+    </ng-container>
+  </ng-container>
+</app-info-card>
+
+<ng-template #tablesLoading>
+  <ngx-skeleton-loader
+    class="block-details__loading"
+    count="6"
+    [theme]="{
+      height: '40px',
+      width: '100%'
+    }"
+  ></ngx-skeleton-loader>
+</ng-template>

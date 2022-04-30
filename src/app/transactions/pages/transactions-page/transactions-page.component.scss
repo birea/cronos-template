@@ -1,0 +1,13 @@
+@import 'variables';
+
+:host {
+  display: block;
+}
+
+.transactions__table {
+  margin: 0 (-$page-side-padding);
+}
+
+.transactions__table--loading {
+  width: 100%;
+}
